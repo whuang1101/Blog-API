@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    border: 1px solid black;
+    padding: 1em;
+    align-items: center;
+    position: sticky;
+    background-color: black;
+    color: white;
+}
+nav {
+    font-family: BoldFont,'Times New Roman', Times, serif;
+    display: flex;
+    font-size: 1.5em;
+    gap: 1em;
+    align-items: center;
+}
+
+.title {
+    font-family: BoldFont,'Times New Roman', Times, serif;
+    font-size: 3em;
+}
+.home-page {
+    height: 100vh;
+    background-image: url("../assets/photo-1486312338219-ce68d2c6f44d.jpeg");
+    background-size: cover;
+}
+
+@font-face {
+    font-family: BoldFont;
+    src: url("../assets/SuperEasy-ZVAr3.ttf");
+}
