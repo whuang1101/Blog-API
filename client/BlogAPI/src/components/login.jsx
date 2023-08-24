@@ -14,7 +14,6 @@ const Login = () => {
       };
     const handleSubmit = async (e) => {
         e.preventDefault();    
-
         try {
             const response = await fetch('http://localhost:3000/login', {
                 method: 'POST',
@@ -24,10 +23,10 @@ const Login = () => {
                 body: JSON.stringify(formData)
             });
             const data = await response.json()
-            console.log(data);
             if (response.ok) {
                 if (data.token) {
                     console.log("Token:", data.token); // Log the token
+                    localStorage.setItem("token", data.token);
                 }
             } 
         } catch (error) {

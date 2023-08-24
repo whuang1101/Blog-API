@@ -10,6 +10,7 @@ const Homepage = () => {
         visible: { opacity: 1 }
       };
     const [data, setData] = useState([]);
+    console.log(localStorage.getItem("token"))
     useEffect(() => {
         const fetchData = async () => {
             try {
