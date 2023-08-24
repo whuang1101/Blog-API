@@ -50,6 +50,7 @@ const Homepage = () => {
             <div className="blog-section" id="blog-section">
                 <div className="blogs">
                     {data.map(item => (
+                        item.is_published &&
                     <motion.div 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}

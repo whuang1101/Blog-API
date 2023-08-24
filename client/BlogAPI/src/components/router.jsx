@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./homepage";
 import Login from "./login";
+import Edit from "./edit";
+
 
 
 const Router = () => {
@@ -11,11 +13,11 @@ const Router = () => {
     },
     {
       path: "/login",
-      element: < Login/>,
+      element: <Login/>,
     },
     {
       path:"/protected",
-      element: (localStorage.getItem("token") ? <Login/> : <Homepage/>)
+      element: (localStorage.getItem("token") ? <Edit/> : <Homepage/>)
     }
   ]);
 

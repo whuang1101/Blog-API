@@ -2,43 +2,45 @@ const asyncHandler = require('express-async-handler');
 const Comment = require('../models/comments');
 const Post = require("../models/posts")
 const mongoose = require('mongoose');
+const jwt = require("jsonwebtoken")
 
 exports.get = asyncHandler(async (req, res, next) => {
     const getComments = await Comment.find().exec();
     res.json(getComments)
   });
 
-exports.post = asyncHandler(async (req, res, next) => {
-  try {
-    // Create a new comment document
-    const newComment = new Comment({
-      user: req.body.user,
-      text: req.body.text,
-      date: req.body.date,
-      post: req.body.post,
-    });
-    const savedComment = await newComment.save();
-
-    // Find the saved comment in order to retrieve its _id
-    const findComment = await Comment.findOne({
-      user: req.body.user,
-      text: req.body.text,
-    });
-
-    // Associate the comment with the post
-    await Post.findByIdAndUpdate(
-      req.body.post,
-      { $push: { comments: findComment._id } },
-      { new: true }
-    );
-
-    res.json({ message: "Comment saved successfully", post: savedComment });
-  } catch (error) {
-    console.error("Error saving comment and updating post:", error);
-    res.status(500).json({ message: "Failed to save comment" });
-  }
-});
-
+  exports.post = asyncHandler(async (req, res, next) => {
+    try {
+      const authData = jwt.verify(req.token, "secretkey"); // Verify the token
+      // If you reach here, the token is valid and authData contains decoded information
+      
+      // Create a new comment document
+      // const newComment = new Comment({
+      //   user: req.body.user,
+      //   text: req.body.text,
+      //   date: req.body.date,
+      //   post: req.body.post,
+      // });
+  
+      // const savedComment = await newComment.save();
+  
+      // // Associate the comment with the post
+      // const post = await Post.findByIdAndUpdate(
+      //   req.body.post,
+      //   { $push: { comments: savedComment._id } },
+      //   { new: true }
+      // );
+  
+      res.json({ message: "Comment saved successfully", authData});
+    } catch (error) {
+      console.error("Error saving comment and updating post:", error);
+      if (error.name === 'JsonWebTokenError') {
+        res.sendStatus(403); // Forbidden due to invalid token
+      } else {
+        res.status(500).json({ message: "Failed to save comment" });
+      }
+    }
+  });
 
 exports.put = asyncHandler(async(req,res, next) => {
   // get parameter :id from req

@@ -27,6 +27,7 @@ const Login = () => {
                 if (data.token) {
                     console.log("Token:", data.token); // Log the token
                     localStorage.setItem("token", data.token);
+                    window.location.href = "/protected";
                 }
             } 
         } catch (error) {

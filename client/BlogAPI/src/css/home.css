@@ -39,7 +39,7 @@ nav {
     font-family: BoldFont,'Times New Roman', Times, serif;
     font-size: 3em;
 }
-.home-section {
+.home-section, .data-section {
     height: calc(100vh - 6em);
     background-image: url("../assets/photo-1486312338219-ce68d2c6f44d.jpeg");
     background-size: cover;
@@ -67,7 +67,9 @@ nav {
     padding: 1em;
     width: clamp(70%,1200px, 95%);
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
+    gap: 2em;
 }
 .blog-post {
     display: flex;
@@ -126,7 +128,7 @@ footer {
     .home-section {
         height: calc(100vh - 3em);
     }
-    .blog-section {
+    .blog-section, .data-section {
         padding: 3em;
     }
 }
