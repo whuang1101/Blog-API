@@ -1,12 +1,36 @@
-import "../css/home.css"
+import "../css/home.css";
+import {motion} from "framer-motion"
 const Header = () => {
+    const handleHomeClick = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+      const handleScrollDown = () => {
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      };
+      const handleEnterKey = (event) => {
+        if (event.key === "Enter") {
+            handleHomeClick();
+        }
+    };
+    const handleScrollDownEnter = (event) => {
+        if (event.key === "Enter") {
+            handleScrollDown();
+        }
+    };
+    
  return (
     <header>
-        <h1 className="title">The Best Blog</h1>
+        <motion.h1 whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}className="title" >The Best Blog</motion.h1>
         <nav>
-            <h3 className="home">Home</h3>
-            <h3 className="post">Post</h3>
-            <h3>Login</h3>
+            <motion.h3 whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="home" onClick={handleHomeClick} onKeyDown={handleEnterKey}>Home</motion.h3>
+            <motion.h3 whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="post" onClick={handleScrollDown} onKeyDown={handleScrollDownEnter}>Post</motion.h3>
+            <motion.h3 whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}><a href= "/login" style={{color:"white", textDecoration: "none"}}>Login</a></motion.h3>
         </nav>
     </header>
  )

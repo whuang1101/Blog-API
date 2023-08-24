@@ -1,0 +1,23 @@
+.login-form {
+    position: absolute;
+    width: clamp(40%, 600px, 80%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-image: linear-gradient(to bottom, black, #333, #666, #999, white);
+    padding: 3em;
+    border-radius: 1em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.username-container, .password-container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
