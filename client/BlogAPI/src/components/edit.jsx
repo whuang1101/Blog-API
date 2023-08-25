@@ -92,6 +92,7 @@ const Edit = () => {
         catch(error) {
             console.error(Error);
         }
+        setModalOpen(false);
     }
     const changePublishStatus = async(item) => {
         const newItem = {...item};

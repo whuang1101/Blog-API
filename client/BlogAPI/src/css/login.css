@@ -21,3 +21,13 @@
     flex-direction: column;
     gap: .5em;
 }
+.submit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.submit-login {
+    width: 30%;
+    font-size: 1.5em;
+}

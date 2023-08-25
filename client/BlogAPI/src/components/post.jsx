@@ -62,10 +62,10 @@ const Post = () => {
         variants={fadeInVariants}
         transition={{ duration: 1 }}>
         <header>
-            <motion.h1 whileHover={{ scale: 1.1 }}
+            <motion.h1 whileHover={{ scale: 1.1 }} tabIndex={-1}
             whileTap={{ scale: 0.9 }}className="title" ><a href="/" style={{color:"white", textDecoration:"none"}}>The Best Blog</a></motion.h1>
             <nav>
-                <motion.h3 whileHover={{ scale: 1.1 }}
+                <motion.h3 whileHover={{ scale: 1.1 }} tabIndex={-1}
                 whileTap={{ scale: 0.9 }}
             className="home"><a href="/" style={{color:"white", textDecoration:"none"}}>Home</a></motion.h3>
             </nav>
@@ -74,9 +74,9 @@ const Post = () => {
             <div className="post-container">
                         {data ? (
                         <>
-                            <div className="post-title">{data.title}</div>
-                            <div className="post-text">{data.text}</div>
-                            <div className="date">{data.date.slice(0,10)}</div>
+                            <h1 className="post-title" tabIndex={0}>{data.title}</h1>
+                            <div className="post-text" tabIndex={0}>{data.text}</div>
+                            <div className="date" tabIndex={0}>{data.date.slice(0,10)}</div>
                         </>
                     ) : (
                         <div>Loading...</div>
@@ -85,7 +85,7 @@ const Post = () => {
             </div>
             <div className="comments">
                     <form className="comments-form" onSubmit={(e) => {handleCommentSubmit(e)}}>
-                    <h1 className="add-comment">Add Comment</h1>
+                    <h1 className="add-comment" tabIndex={0}>Add Comment</h1>
                     <div className="username-form">
                         <label htmlFor="username" className="font">Username:</label>
                         <input type="text" name="username" onChange={(e) => setUser(e.target.value)} value={user}/>
@@ -98,14 +98,14 @@ const Post = () => {
                     </form>
                 <div className="actual-comments">
                     
-                   { data && data.comments.length === 0 ? <div className="no-comment">No comments currently for this blog</div>: 
-                   <> <div className="comment-title">
+                   { data && data.comments.length === 0 ? <div className="no-comment" tabIndex={0}>No comments currently for this blog</div>: 
+                   <> <div className="comment-title" tabIndex={0}>
                         Comments
                     </div>
                     {data && data.comments.map((item) => (
                         <div className="one-comment" key={item._id}>
-                            <div className="comment-user">{item.user}</div>
-                            <div className="comment-text">{item.text}</div>
+                            <div className="comment-user" tabIndex={0}>{item.user}</div>
+                            <div className="comment-text" tabIndex={0}>{item.text}</div>
                         </div>
                     ))}
                     </>

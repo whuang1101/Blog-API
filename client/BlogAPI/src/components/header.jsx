@@ -29,7 +29,7 @@ const Header = () => {
             <motion.h3 whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="post" onClick={handleScrollDown} onKeyDown={handleScrollDownEnter}>Post</motion.h3>
-            <motion.h3 whileHover={{ scale: 1.1 }}
+            <motion.h3 whileHover={{ scale: 1.1 }} tabIndex={-1}
             whileTap={{ scale: 0.9 }}><a href= "/login" style={{color:"white", textDecoration: "none"}}>Login</a></motion.h3>
         </nav>
     </header>

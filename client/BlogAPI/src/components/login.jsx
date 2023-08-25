@@ -41,11 +41,11 @@ const Login = () => {
         transition={{ duration: 1 }}>
         <header>
         <motion.h1 whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}className="title" ><a href="/" style={{color:"white", textDecoration:"none"}}>The Best Blog</a></motion.h1>
+        whileTap={{ scale: 0.9 }}className="title" tabIndex={-1} ><a href="/" style={{color:"white", textDecoration:"none"}}>The Best Blog</a></motion.h1>
         <nav>
             <motion.h3 whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="home"><a href="/" style={{color:"white", textDecoration:"none"}}>Home</a></motion.h3>
+            className="home" tabIndex={-1}><a href="/" style={{color:"white", textDecoration:"none"}}>Home</a></motion.h3>
         </nav>
     </header>
     <div className="home-section">
@@ -60,7 +60,7 @@ const Login = () => {
                     <input type="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className="submit-container">
-                    <input type="submit" className="submit" />
+                    <input type="submit" className="submit-login" />
                 </div>
             </form>
         </div>
