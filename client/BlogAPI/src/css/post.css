@@ -75,6 +75,35 @@
     font-size: 2em;
     font-family: fancyText, Arial, Helvetica, sans-serif; 
 }
+.one-comment {
+    display: flex;
+    padding: 1.5em;
+    background-color: white;
+    min-height: 8em;
+    border-radius: 1em;
+}
+.actual-comments {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+.comment-text {
+    padding-left: 1em;
+    font-family: fancyText, Arial, Helvetica, sans-serif; 
+    font-size: 1.5rem;
+}
+.comment-user, .comment-text {
+    display: flex;
+    flex: 1;
+}
+.comment-user {
+    border-right: 1px solid black;
+    align-items:  center;
+}
+.add-comment {
+    font-family: fancyText, Arial, Helvetica, sans-serif; 
+    font-size: 4rem;
+}
 @font-face {
     font-family: fancyText;
     src: url("../assets/LittleLordFontleroyNF.otf");

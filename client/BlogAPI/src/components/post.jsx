@@ -19,8 +19,8 @@ const Post = () => {
                 const apiUrl = `http://localhost:3000/posts/${id}`;
                 const response = await fetch(apiUrl);
                 const data = await response.json();
-                setData(data);
                 console.log(data)
+                setData(data);
             } catch (error) {
                 console.error("Error Fetching data: ", error);
             }
@@ -44,7 +44,11 @@ const Post = () => {
              "Content-Type": "application/json"
          },
          body: JSON.stringify(newComment),
-         }).then(response => response.json()).then(data => setData(data));
+         }).then(response => response.json())
+         setData(prevData => ({
+            ...prevData,
+            comments: [...prevData.comments, newComment]
+          }))
          setUser("")
          setText("")
          }
@@ -81,6 +85,7 @@ const Post = () => {
             </div>
             <div className="comments">
                     <form className="comments-form" onSubmit={(e) => {handleCommentSubmit(e)}}>
+                    <h1 className="add-comment">Add Comment</h1>
                     <div className="username-form">
                         <label htmlFor="username" className="font">Username:</label>
                         <input type="text" name="username" onChange={(e) => setUser(e.target.value)} value={user}/>
@@ -93,9 +98,18 @@ const Post = () => {
                     </form>
                 <div className="actual-comments">
                     
-                   { data && data.comments.length === 0 ? <div className="no-comment">No comments currently for this blog</div>:  <div className="comment-title">
+                   { data && data.comments.length === 0 ? <div className="no-comment">No comments currently for this blog</div>: 
+                   <> <div className="comment-title">
                         Comments
-                    </div>}
+                    </div>
+                    {data && data.comments.map((item) => (
+                        <div className="one-comment" key={item._id}>
+                            <div className="comment-user">{item.user}</div>
+                            <div className="comment-text">{item.text}</div>
+                        </div>
+                    ))}
+                    </>
+                    }
                 </div>
             </div>
         </div>

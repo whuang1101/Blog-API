@@ -10,6 +10,7 @@ exports.get = asyncHandler(async (req, res, next) => {
 exports.getOne = asyncHandler(async (req, res, next) => {
   const newId = req.params.id;
   const getPosts = await Post.findOne({_id: newId}).populate("comments").exec();
+  console.log(getPosts)
   res.json(getPosts)
 });
 exports.post = asyncHandler(async(req,res,next) => {
