@@ -63,3 +63,13 @@ input, textarea {
     flex-direction: column;
     gap: 1em;
 }
+.edit-delete-comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+.delete-comment {
+    color: red;
+}

@@ -3,6 +3,7 @@ import Homepage from "./homepage";
 import Login from "./login";
 import Edit from "./edit";
 import Post from "./post";
+import CommentEdit from "./comment-edit";
 
 
 
@@ -19,6 +20,10 @@ const Router = () => {
     {
       path:"/protected",
       element: (localStorage.getItem("token") ? <Edit/> : <Homepage/>)
+    },
+    {
+      path:"/protected/:id",
+      element: (localStorage.getItem("token") ? <CommentEdit/> : <Homepage/>)
     },
     {
       path: "/:id",

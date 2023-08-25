@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 const PostEdit = ({editPost, setEditPost, dropIn, setEditOpen, setData}) => {
     const handleSubmitButton = async(e) => {
         const updatedPost = {...editPost};
-        console.log(updatedPost)
         e.preventDefault();
         
         try
@@ -18,7 +17,6 @@ const PostEdit = ({editPost, setEditPost, dropIn, setEditOpen, setData}) => {
         body: JSON.stringify(updatedPost),
         token: localStorage.getItem("token")
         }).then(response => response.json()).then(data => setData(data));
-        console.log("switched");
         setEditOpen(false);
     }
         catch (error){
@@ -52,8 +50,7 @@ const PostEdit = ({editPost, setEditPost, dropIn, setEditOpen, setData}) => {
         }
     return(
     <>
-    <div className="hi"></div>
-    <motion.div
+        <motion.div
                 className="backdrop"
                 onClick={() => setEditOpen(false)}
                 initial={{ opacity: 0 }}

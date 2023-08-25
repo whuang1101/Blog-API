@@ -16,7 +16,6 @@ exports.get = asyncHandler(async (req, res, next) => {
         date: req.body.date,
         post: req.body.post,
       });
-      console.log(newComment);
       const savedComment = await newComment.save();
   
       // Associate the comment with the post
@@ -32,40 +31,55 @@ exports.get = asyncHandler(async (req, res, next) => {
 
 exports.put = asyncHandler(async(req,res, next) => {
   // get parameter :id from req
-  const parameterId = req.params.id
+  const authData = jwt.verify(req.token, "secretkey");
+  if(authData)
+  { 
+  const parameterId = req.params.id;
+  const updatedComment = req.body;
   if(mongoose.Types.ObjectId.isValid(parameterId)){
   const findComment = await Comment.findOne({_id: parameterId})
+  console.log(findComment);
+  console.log(updatedComment)
   if(findComment){
-    //checks if post was found will update later
-    res.send("post was found");
+    const updateComment = await Comment.findByIdAndUpdate(parameterId, updatedComment);
+    if (updateComment){
+      res.status(200).send("OK");
+    }
   }
   else{
-    res.send("post was not")
-  }}
+    res.json({message: "post was not"})
+  }
+  }
   else {
     //Object id is not valid
     res.status(418).send({message: "parameter id is not an ObjectId"})
   }
+}
 })
 
 exports.delete = asyncHandler(async(req,res, next) => {
-  const parameterId = req.params.id
+  const authData = jwt.verify(req.token, "secretkey");
+  if(authData)
+  { 
+  const parameterId = req.body._id;
   if(mongoose.Types.ObjectId.isValid(parameterId)){
-  const findComment = await Comment.findOne({_id: parameterId})
+
+  const findComment = await Comment.findOne({_id: parameterId}).exec()
   if(findComment){
     //check if post was found will delete
-    const deleteComment = await Comment.deleteOne({_id:parameterId});
-    res.send("post was deleted");
-    await Post.findByIdAndUpdate(
-      req.body.post,
+    console.log(req.params.id)
+    const hello = await Post.findByIdAndUpdate(
+      req.params.id,
       { $pull: { comments: findComment._id } },
     );
+    const findOne = await Post.findById(req.params.id).exec();
+    const deleteComment = await Comment.deleteOne({_id:parameterId});
+    res.status(200).json({ message: 'Comment deleted successfully' });
   }
   else{
-    res.send("post was not")
+    res.json({message:"post was not deleted"})
   }}
   else {
     res.status(418).send({message: "parameter id is not an ObjectId"})
   }
-  res.json()
-})
+}})

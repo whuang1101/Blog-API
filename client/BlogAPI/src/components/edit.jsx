@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { motion} from "framer-motion";
 import "../css/editor.css"
 import PostEdit from "./edit-post";
+import ActualHeader from "./actual-header";
 const Edit = () => {
     const [data, setData] = useState([]);
     const [check, setCheck] = useState(false);
@@ -20,9 +21,7 @@ const Edit = () => {
     const handleEditPost = (item) => {
         const previousPost = {...item}
         setEditPost(previousPost);
-        setEditOpen(true);
-        console.log(previousPost);
-        
+        setEditOpen(true);        
     }
     const fadeInVariants = {
         hidden: { opacity: .2 },
@@ -162,7 +161,7 @@ const Edit = () => {
         <PostEdit editPost={editPost} setEditPost={setEditPost} dropIn={dropIn} setEditOpen={setEditOpen} setData= {setData}/>
         }
 
-        <header>
+<header>
         <motion.h1 whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}className="title" ><a href="/" style={{color:"white", textDecoration:"none"}}>The Best Blog</a></motion.h1>
         <nav>
@@ -176,7 +175,7 @@ const Edit = () => {
         <div className="blog-editor">
             {data.map((item) => (
                 <div className="blog-edit" key={item._id}>
-                    <div className="blog-edit-title">{item.title}</div>
+                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="home"><a href={`/protected/${item._id}`} style={{color: "white" , textDecoration: "none"}}>{item.title}</a></motion.div>
                     <div className="publish-delete">
                         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="edit" onClick={() => {handleEditPost(item)}}>
                             Edit

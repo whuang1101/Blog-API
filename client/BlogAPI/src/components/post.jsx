@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "../css/post.css";
 import { useParams } from 'react-router-dom';
 import Footer from "./footer";
+import LoadingScreen from "./loading-screen";
 const Post = () => {
     const {id} = useParams();
     const [user, setUser] = useState("");
@@ -79,7 +80,7 @@ const Post = () => {
                             <div className="date" tabIndex={0}>{data.date.slice(0,10)}</div>
                         </>
                     ) : (
-                        <div>Loading...</div>
+                        <LoadingScreen/ >
                     )}
 
             </div>
