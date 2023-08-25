@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import { motion} from "framer-motion";
 import "../css/editor.css"
-
+import PostEdit from "./edit-post";
 const Edit = () => {
     const [data, setData] = useState([]);
     const [check, setCheck] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [editPost, setEditPost] = useState({});
+    const [editOpen, setEditOpen] = useState(false);
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [pictureUrl, setPictureUrl] = useState("");
@@ -14,6 +16,14 @@ const Edit = () => {
     const close = () => setModalOpen(false);
     const open = () => setModalOpen(true);
     
+
+    const handleEditPost = (item) => {
+        const previousPost = {...item}
+        setEditPost(previousPost);
+        setEditOpen(true);
+        console.log(previousPost);
+        
+    }
     const fadeInVariants = {
         hidden: { opacity: .2 },
         visible: { opacity: 1 }
@@ -125,29 +135,33 @@ const Edit = () => {
 
         {   modalOpen &&
             <motion.div
-                className="backdrop"
-                onClick={close}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}>
-                <motion.div variants={dropIn} initial="hidden" animate="visible" exit="exit" onClick={(e) => e.stopPropagation()} className="modal"> 
-                <form onSubmit={(e) => submitForm(e)} tabIndex={0} className="add-blog">
-                    <h1 style={{padding: 0, margin: 0}}>Add Post</h1>
-                    <label htmlFor="title">Post title:</label>
-                    <input type="text" name="title" required={true} onChange={(e) => setTitle(e.target.value)}/>
-                    <label htmlFor="text">Text</label>
-                    <textarea type="text" name="text" required={true} onChange={(e) => setText(e.target.value)}/>
-                    <label htmlFor="picture_url">URL for picture</label>
-                    <input type="text" name="picture_url"  onChange={(e) => setPictureUrl(e.target.value)}/>
-                    <div className="is_published">
-                        <label htmlFor="form_is_published">Is published?</label>
-                        <input type="checkbox" name="form_is_published" onChange={(e) => setIsPublished(e.target.checked)}/>
-                    </div>
-                    <input type="submit" />
-                </form>
-                </motion.div>
+            className="backdrop"
+            onClick={close}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}>
+            <motion.div variants={dropIn} initial="hidden" animate="visible" exit="exit" onClick={(e) => e.stopPropagation()} className="modal"> 
+            <form onSubmit={(e) => submitForm(e)} tabIndex={0} className="add-blog">
+                <h1 style={{padding: 0, margin: 0}}>Add Post</h1>
+                <label htmlFor="title">Post title:</label>
+                <input type="text" name="title" required={true} onChange={(e) => setTitle(e.target.value)}/>
+                <label htmlFor="text">Text</label>
+                <textarea type="text" name="text" required={true} onChange={(e) => setText(e.target.value)}/>
+                <label htmlFor="picture_url">URL for picture</label>
+                <input type="text" name="picture_url"  onChange={(e) => setPictureUrl(e.target.value)}/>
+                <div className="is_published">
+                    <label htmlFor="form_is_published">Is published?</label>
+                    <input type="checkbox" name="form_is_published" onChange={(e) => setIsPublished(e.target.checked)}/>
+                </div>
+                <input type="submit" />
+            </form>
             </motion.div>
+        </motion.div>
     }
+    { editOpen && 
+        <PostEdit editPost={editPost} setEditPost={setEditPost} dropIn={dropIn} setEditOpen={setEditOpen} setData= {setData}/>
+        }
+
         <header>
         <motion.h1 whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}className="title" ><a href="/" style={{color:"white", textDecoration:"none"}}>The Best Blog</a></motion.h1>
@@ -164,6 +178,9 @@ const Edit = () => {
                 <div className="blog-edit" key={item._id}>
                     <div className="blog-edit-title">{item.title}</div>
                     <div className="publish-delete">
+                        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="edit" onClick={() => {handleEditPost(item)}}>
+                            Edit
+                        </motion.div>
                         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="delete" onClick={() => {deletePost(item)} }>
                             Delete?
                         </motion.div>

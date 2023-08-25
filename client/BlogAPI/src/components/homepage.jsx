@@ -50,7 +50,7 @@ const Homepage = () => {
                 <div className="blogs">
                     {data.map(item => (
                         item.is_published &&
-                        <a key={item._id} href={`/${item._id}`}><motion.div  tabIndex={-1}
+                        <a key={item._id} href={`/${item._id}`}><motion.div tabIndex={-1}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     className="blog-post"  >
