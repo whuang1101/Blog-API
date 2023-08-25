@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./homepage";
 import Login from "./login";
 import Edit from "./edit";
+import Post from "./post";
 
 
 
@@ -18,6 +19,10 @@ const Router = () => {
     {
       path:"/protected",
       element: (localStorage.getItem("token") ? <Edit/> : <Homepage/>)
+    },
+    {
+      path: "/:id",
+      element:  <Post/>
     }
   ]);
 

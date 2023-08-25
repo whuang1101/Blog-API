@@ -130,7 +130,7 @@ const Edit = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>
                 <motion.div variants={dropIn} initial="hidden" animate="visible" exit="exit" onClick={(e) => e.stopPropagation()} className="modal"> 
-                <form onSubmit={(e) => submitForm(e)} tabIndex={0}>
+                <form onSubmit={(e) => submitForm(e)} tabIndex={0} className="add-blog">
                     <h1 style={{padding: 0, margin: 0}}>Add Post</h1>
                     <label htmlFor="title">Post title:</label>
                     <input type="text" name="title" required={true} onChange={(e) => setTitle(e.target.value)}/>
@@ -163,7 +163,7 @@ const Edit = () => {
                 <div className="blog-edit" key={item._id}>
                     <div className="blog-edit-title">{item.title}</div>
                     <div className="publish-delete">
-                        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="delete" onClick={() => {deletePost(item)}}>
+                        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="delete" onClick={() => {deletePost(item)} }>
                             Delete?
                         </motion.div>
                         <div className="published">

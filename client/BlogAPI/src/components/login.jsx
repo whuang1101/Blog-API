@@ -50,7 +50,7 @@ const Login = () => {
     </header>
     <div className="home-section">
         <div className="login-form" >
-         <form onSubmit={handleSubmit}>
+         <form onSubmit={handleSubmit} className="login-form-submit">
                 <div className="username-container">
                     <label htmlFor="username">Username</label>
                     <input type="text" name="username" onChange={(e) => setUsername(e.target.value)}/>

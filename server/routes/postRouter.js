@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const postController = require("../controllers/postController")
 router.get("/", postController.get);
+router.get("/:id", postController.getOne)
 router.post("/", verifyToken, postController.post);
 router.put("/:id", verifyToken,postController.put);
 router.delete("/:id", verifyToken, postController.delete);

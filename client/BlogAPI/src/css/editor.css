@@ -29,9 +29,9 @@
     z-index: 2;
 }
 .modal {
-    width: clamp(50%, 700px 90%);
+    width: clamp(50%, 1000px 90%);
     margin: auto;
-    padding: 2rem 2rem ;
+    padding: 1rem 1rem ;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -55,4 +55,10 @@ input, textarea {
 }
 .delete{
     color: red;
+    width: 50%;
+}
+.add-blog {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }

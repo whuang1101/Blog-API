@@ -1,0 +1,81 @@
+.main-content{ 
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, black, rgb(20, 19, 19));
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+.post-container, .comments {
+    font-family: fancyText, Arial, Helvetica, sans-serif; 
+    width: clamp(70%, 1100px, 90%);
+    background-color: rgb(224,201,166);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em;
+    border-radius: 1em;
+}
+.post-title {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    font-family: fancyText, Arial, Helvetica, sans-serif; 
+    padding: 1rem;
+    font-size: 5em;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid black;
+}
+.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+.comments-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1em;
+}
+.post-text {
+    font-family: fancyText, Arial, Helvetica, sans-serif; 
+    font-size: 3em;
+    min-height: 5em;
+}
+.date {
+    font-family: fancyText, Arial, Helvetica, sans-serif; 
+    display: flex;
+    justify-content: flex-end;
+    font-size: 2em;
+}
+.comment-area, .username-form, .submit {
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 500px);
+}
+.comment-title {
+    font-family: fancyText, Arial, Helvetica, sans-serif; 
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+}
+.no-comment {
+    display: flex;
+    justify-content: center;
+    font-family: fancyText, Arial, Helvetica, sans-serif; 
+    font-size: 3em;
+}
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.font,.submit {
+    font-size: 2em;
+    font-family: fancyText, Arial, Helvetica, sans-serif; 
+}
+@font-face {
+    font-family: fancyText;
+    src: url("../assets/LittleLordFontleroyNF.otf");
+}

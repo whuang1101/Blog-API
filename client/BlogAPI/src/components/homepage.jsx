@@ -10,8 +10,7 @@ const Homepage = () => {
         visible: { opacity: 1 }
       };
     const [data, setData] = useState([]);
-    console.log(localStorage.getItem("token"))
-    useEffect(() => {
+        useEffect(() => {
         const fetchData = async () => {
             try {
                 const apiUrl = "http://localhost:3000/posts";
@@ -51,17 +50,17 @@ const Homepage = () => {
                 <div className="blogs">
                     {data.map(item => (
                         item.is_published &&
-                    <motion.div 
+                        <a key={item._id} href={`/${item._id}`}><motion.div 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className="blog-post" key={item._id}>
+                    className="blog-post"  >
                         <div className="picture" style={{ backgroundImage: `url(${item.picture_url})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+                            <div className="read">read</div>
                             <div className="blog-title">{item.title}</div>
                         </div>
-                        <div className="read">
-                        read
-                        </div>
+
                     </motion.div>
+                    </a>
                     ))}
                 </div>
             </div>
